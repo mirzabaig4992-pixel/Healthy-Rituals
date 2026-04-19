@@ -57,17 +57,17 @@ ul,ol{list-style:none}
 .tag--light { color: var(--gold); }
 
 h2 {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: clamp(2.2rem, 4.5vw, 3.8rem);
-  font-weight: 300;
+  font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.01em;
   color: var(--green);
   margin-bottom: 28px;
 }
 h2 em {
-  font-style: italic;
-  font-weight: 300;
+  font-style: normal;
+  font-weight: 400;
 }
 
 /* BUTTON */
@@ -173,7 +173,7 @@ h2 em {
 }
 .mob.is-active{opacity:1;pointer-events:all}
 .mob__link {
-  font-family:var(--serif);font-size:2rem;font-weight:300;
+  font-family:var(--sans);font-size:2rem;font-weight:400;
   color:var(--cream);opacity:0.6;transition:opacity 0.3s;
 }
 .mob__link:hover{opacity:1}
@@ -255,9 +255,9 @@ h2 em {
   opacity: 0;
 }
 .hero__h1 {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: clamp(3rem, 6.5vw, 5.2rem);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.05;
   letter-spacing: -0.02em;
   margin-bottom: 20px;
@@ -274,7 +274,7 @@ h2 em {
 }
 .hero__word--right em {
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
 }
 .hero__sub {
   font-family: var(--sans);
@@ -314,12 +314,12 @@ h2 em {
   text-align:center;
 }
 .intro__text {
-  font-family:var(--serif);
+  font-family:var(--sans);
   font-size:clamp(1.3rem,2.4vw,2.1rem);
-  font-weight:300;line-height:1.75;
+  font-weight:400;line-height:1.75;
   color:var(--green);
 }
-.intro__text em { font-style:italic; }
+.intro__text em { font-style:normal; }
 
 /* ============ STORY ============ */
 .story { padding:0 0 180px; }
@@ -354,8 +354,8 @@ h2 em {
 }
 .story__stat strong {
   display:block;
-  font-family:var(--serif);
-  font-size:2.6rem;font-weight:300;
+  font-family:var(--sans);
+  font-size:2.6rem;font-weight:400;
   color:var(--green);line-height:1;margin-bottom:6px;
 }
 .story__stat span {
@@ -375,8 +375,8 @@ h2 em {
   animation:slide 30s linear infinite;
 }
 .marquee__track span {
-  font-family:var(--serif);font-size:1.1rem;font-weight:300;
-  font-style:italic;color:var(--green);
+  font-family:var(--sans);font-size:1.1rem;font-weight:400;
+  font-style:normal;color:var(--green);
 }
 .marquee__sep { color:var(--gold);font-style:normal; }
 @keyframes slide {
@@ -398,9 +398,9 @@ h2 em {
   background:rgba(26,46,5,0.4);
 }
 .bleed blockquote {
-  font-family:var(--serif);
+  font-family:var(--sans);
   font-size:clamp(1.4rem,3vw,2.4rem);
-  font-weight:300;font-style:italic;
+  font-weight:400;font-style:normal;
   color:var(--cream);text-align:center;
   line-height:1.5;max-width:600px;padding:0 32px;
 }
@@ -431,7 +431,7 @@ h2 em {
   padding:16px 0;border-bottom:1px solid var(--border);
 }
 .product__ingredient {
-  font-family:var(--serif);font-size:1.15rem;font-weight:400;color:var(--green);
+  font-family:var(--sans);font-size:1.15rem;font-weight:400;color:var(--green);
 }
 .product__benefit {
   font-size:0.78rem;font-weight:700;font-family:var(--brand);
@@ -442,7 +442,7 @@ h2 em {
   flex-wrap:wrap;padding-top:20px;
 }
 .product__price {
-  font-family:var(--serif);font-size:2rem;font-weight:300;color:var(--green);
+  font-family:var(--sans);font-size:2rem;font-weight:400;color:var(--green);
 }
 .product__price small { font-size:0.85rem; }
 .product__meta {
@@ -479,7 +479,7 @@ h2 em {
   display:block;margin-bottom:24px;
 }
 .benefits__card h3 {
-  font-family:var(--serif);font-size:1.4rem;font-weight:300;
+  font-family:var(--sans);font-size:1.4rem;font-weight:400;
   color:var(--cream);line-height:1.2;margin-bottom:14px;
 }
 .benefits__card p {
@@ -508,7 +508,7 @@ h2 em {
 }
 .ingredients__card:hover .ingredients__img img { transform:scale(1.05); }
 .ingredients__card h3 {
-  font-family:var(--serif);font-size:1.1rem;font-weight:400;
+  font-family:var(--sans);font-size:1.1rem;font-weight:400;
   color:var(--green);margin-bottom:4px;
 }
 .ingredients__card p { font-size:0.8rem;color:var(--grey); }
@@ -543,8 +543,8 @@ h2 em {
   color:var(--gold);font-size:0.8rem;letter-spacing:3px;margin-bottom:24px;
 }
 .reviews__card p {
-  font-family:var(--serif);font-size:1.05rem;font-weight:300;
-  font-style:italic;line-height:1.75;color:var(--dark);margin-bottom:28px;
+  font-family:var(--sans);font-size:1.05rem;font-weight:400;
+  font-style:normal;line-height:1.75;color:var(--dark);margin-bottom:28px;
 }
 .reviews__card cite {
   font-family:var(--brand);font-style:normal;
@@ -577,7 +577,7 @@ h2 em {
   align-items: center;
   justify-content: space-between;
   padding: 28px 0;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 1.2rem;
   font-weight: 400;
   color: var(--green);
@@ -590,7 +590,7 @@ h2 em {
   content: '+';
   font-family: var(--sans);
   font-size: 1.4rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--grey-light);
   transition: transform 0.3s var(--ease);
   flex-shrink: 0;
