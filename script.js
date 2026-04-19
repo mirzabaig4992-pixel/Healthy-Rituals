@@ -236,15 +236,15 @@ document.addEventListener('DOMContentLoaded', () => {
         stagger: 0.1, duration: 0.7, ease: 'power2.out'
       });
 
-      /* ---- STAGGERED REVIEWS ---- */
-      gsap.from('.reviews__card', {
+      /* ---- REVIEWS SECTION REVEAL ---- */
+      gsap.from('.reviews__track-wrap', {
         scrollTrigger: {
-          trigger: '.reviews__grid',
+          trigger: '.reviews',
           start: 'top 85%',
           toggleActions: 'play none none none'
         },
-        opacity: 0, y: 24,
-        stagger: 0.1, duration: 0.7, ease: 'power2.out'
+        opacity: 0, y: 30,
+        duration: 1, ease: 'power2.out'
       });
 
       /* ---- PRODUCT LIST STAGGER ---- */
@@ -319,6 +319,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const marqueeTrack = document.querySelector('.marquee__track');
   if (marqueeTrack) {
     marqueeTrack.innerHTML += marqueeTrack.innerHTML;
+  }
+
+  /* ---- REVIEWS CAROUSEL DUPLICATE for seamless loop ---- */
+  const reviewsTrack = document.getElementById('reviewsTrack');
+  if (reviewsTrack) {
+    reviewsTrack.innerHTML += reviewsTrack.innerHTML;
   }
 
 });
