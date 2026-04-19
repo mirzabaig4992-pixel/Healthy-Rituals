@@ -4,7 +4,11 @@ Thumbs.db
 *.log
 
 # Exclude heavy/unused assets
+30s Hero Wide.mp4
+Healthy_Rituals_Logo_Suite (2).ai
 Graphic Assets/
+Stills/
+Ingredient Carousels/
 AlteHaasGroteskBold (5).ttf
 AlteHaasGroteskRegular (7).ttf
 package.json
