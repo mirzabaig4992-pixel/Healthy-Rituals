@@ -117,8 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
       heroExpanded = true;
       hero.classList.add('is-expanded');
       document.body.style.overflow = '';
-      // Recalculate all ScrollTrigger positions now that page is scrollable
-      setTimeout(() => ScrollTrigger.refresh(), 100);
+      // Initialize scroll animations now that page is scrollable
+      initScrollAnimations();
     } else if (progress < 1 && heroExpanded) {
       heroExpanded = false;
       hero.classList.remove('is-expanded');
@@ -188,101 +188,114 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize hero at scrollProgress 0
   updateHero(0);
 
-  /* ---- SCROLL REVEALS ---- */
-  document.querySelectorAll('[data-reveal]').forEach(el => {
-    gsap.from(el, {
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 88%',
-        toggleActions: 'play none none none'
-      },
-      opacity: 0,
-      y: 28,
-      duration: 0.9,
-      ease: 'power2.out'
-    });
-  });
+  /* ---- INIT SCROLL ANIMATIONS (deferred until hero expands) ---- */
+  let scrollAnimsInit = false;
 
-  /* ---- STAGGERED BENEFITS ---- */
-  gsap.from('.benefits__card', {
-    scrollTrigger: {
-      trigger: '.benefits__grid',
-      start: 'top 82%',
-      toggleActions: 'play none none none'
-    },
-    opacity: 0, y: 40,
-    stagger: 0.1, duration: 0.8, ease: 'power3.out'
-  });
+  function initScrollAnimations() {
+    if (scrollAnimsInit) return;
+    scrollAnimsInit = true;
 
-  /* ---- STAGGERED INGREDIENTS ---- */
-  gsap.from('.ingredients__card', {
-    scrollTrigger: {
-      trigger: '.ingredients__scroll',
-      start: 'top 85%',
-      toggleActions: 'play none none none'
-    },
-    opacity: 0, x: 30,
-    stagger: 0.07, duration: 0.7, ease: 'power2.out'
-  });
+    // Wait a frame for layout to settle after overflow change
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
 
-  /* ---- STAGGERED REVIEWS ---- */
-  gsap.from('.reviews__card', {
-    scrollTrigger: {
-      trigger: '.reviews__grid',
-      start: 'top 85%',
-      toggleActions: 'play none none none'
-    },
-    opacity: 0, y: 24,
-    stagger: 0.1, duration: 0.7, ease: 'power2.out'
-  });
+      /* ---- SCROLL REVEALS ---- */
+      document.querySelectorAll('[data-reveal]').forEach(el => {
+        gsap.from(el, {
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 88%',
+            toggleActions: 'play none none none'
+          },
+          opacity: 0,
+          y: 28,
+          duration: 0.9,
+          ease: 'power2.out'
+        });
+      });
 
-  /* ---- PRODUCT LIST STAGGER ---- */
-  gsap.from('.product__row', {
-    scrollTrigger: {
-      trigger: '.product__list',
-      start: 'top 85%',
-      toggleActions: 'play none none none'
-    },
-    opacity: 0, x: -16,
-    stagger: 0.06, duration: 0.5, ease: 'power2.out'
-  });
+      /* ---- STAGGERED BENEFITS ---- */
+      gsap.from('.benefits__card', {
+        scrollTrigger: {
+          trigger: '.benefits__grid',
+          start: 'top 82%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 0, y: 40,
+        stagger: 0.15, duration: 0.8, ease: 'power3.out'
+      });
 
-  /* ---- GALLERY STAGGER ---- */
-  gsap.from('.gallery__item', {
-    scrollTrigger: {
-      trigger: '.gallery',
-      start: 'top 82%',
-      toggleActions: 'play none none none'
-    },
-    opacity: 0, y: 30,
-    stagger: 0.12, duration: 0.8, ease: 'power2.out'
-  });
+      /* ---- STAGGERED INGREDIENTS ---- */
+      gsap.from('.ingredients__card', {
+        scrollTrigger: {
+          trigger: '.ingredients__scroll',
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 0, x: 30,
+        stagger: 0.1, duration: 0.7, ease: 'power2.out'
+      });
 
-  /* ---- BLEED PARALLAX ---- */
-  const bleedImg = document.querySelector('.bleed img');
-  if (bleedImg) {
-    gsap.to(bleedImg, {
-      scrollTrigger: {
-        trigger: '.bleed',
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 1.5
-      },
-      y: -40, scale: 1.04, ease: 'none'
-    });
-  }
+      /* ---- STAGGERED REVIEWS ---- */
+      gsap.from('.reviews__card', {
+        scrollTrigger: {
+          trigger: '.reviews__grid',
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 0, y: 24,
+        stagger: 0.1, duration: 0.7, ease: 'power2.out'
+      });
 
-  /* ---- STORY IMAGE PARALLAX ---- */
-  const storyImg = document.querySelector('.story__img--main img');
-  if (storyImg) {
-    gsap.to(storyImg, {
-      scrollTrigger: {
-        trigger: '.story',
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 1.5
-      },
-      y: -30, ease: 'none'
+      /* ---- PRODUCT LIST STAGGER ---- */
+      gsap.from('.product__row', {
+        scrollTrigger: {
+          trigger: '.product__list',
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 0, x: -16,
+        stagger: 0.06, duration: 0.5, ease: 'power2.out'
+      });
+
+      /* ---- GALLERY STAGGER ---- */
+      gsap.from('.gallery__item', {
+        scrollTrigger: {
+          trigger: '.gallery',
+          start: 'top 82%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 0, y: 30,
+        stagger: 0.12, duration: 0.8, ease: 'power2.out'
+      });
+
+      /* ---- BLEED PARALLAX ---- */
+      const bleedImg = document.querySelector('.bleed img');
+      if (bleedImg) {
+        gsap.to(bleedImg, {
+          scrollTrigger: {
+            trigger: '.bleed',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.5
+          },
+          y: -40, scale: 1.04, ease: 'none'
+        });
+      }
+
+      /* ---- STORY IMAGE PARALLAX ---- */
+      const storyImg = document.querySelector('.story__img--main img');
+      if (storyImg) {
+        gsap.to(storyImg, {
+          scrollTrigger: {
+            trigger: '.story',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.5
+          },
+          y: -30, ease: 'none'
+        });
+      }
     });
   }
 
