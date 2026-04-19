@@ -1,0 +1,15 @@
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+
+# Exclude heavy/unused assets
+Graphic Assets/
+AlteHaasGroteskBold (5).ttf
+AlteHaasGroteskRegular (7).ttf
+package.json
+package-lock.json
+FAQs.txt
+.claude/
+components/
+Healthy Rituals - Brand Identity.pdf

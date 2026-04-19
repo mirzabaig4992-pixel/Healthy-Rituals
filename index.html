@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthy Rituals | Superfocus Coffee</title>
+  <meta name="description" content="A ritual worth returning to. Superfocus Coffee — nootropics, adaptogens, and superfoods for mental clarity, sustained energy, and gut health.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="loader__logo">
+      <img src="Logo-SVG/Healthy_Rituals_Logo_Suite (2)-1.svg" alt="">
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">
+        <img src="Logo-SVG/Healthy_Rituals_Logo_Suite (2)-1.svg" alt="Healthy Rituals">
+      </a>
+      <div class="nav__center">
+        <a href="#story">Story</a>
+        <a href="#product">Product</a>
+        <a href="#ingredients">Ingredients</a>
+      </div>
+      <a href="https://healthyritualscoffee.com/products/superfocus-coffee" class="nav__shop" target="_blank" rel="noopener">Shop</a>
+      <button class="nav__burger" id="navBurger" aria-label="Menu"><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mob" id="mob">
+    <a href="#story" class="mob__link">Story</a>
+    <a href="#product" class="mob__link">Product</a>
+    <a href="#ingredients" class="mob__link">Ingredients</a>
+    <a href="https://healthyritualscoffee.com/products/superfocus-coffee" class="mob__link" target="_blank" rel="noopener">Shop</a>
+  </div>
+
+  <!-- HERO — Scroll-Expanding Video -->
+  <header class="hero" id="hero">
+    <!-- Background image behind video -->
+    <div class="hero__bg-image">
+      <img src="Stills/DSC09248.jpg" alt="" aria-hidden="true">
+      <div class="hero__bg-dim"></div>
+    </div>
+
+    <!-- Expanding video container -->
+    <div class="hero__media" id="heroMedia">
+      <video autoplay muted loop playsinline class="hero__video">
+        <source src="30s Hero Wide.mp4" type="video/mp4">
+      </video>
+      <div class="hero__media-dim"></div>
+    </div>
+
+    <!-- Title text that splits on scroll -->
+    <div class="hero__text">
+      <p class="hero__tag">Everyday Mushroom Blends</p>
+      <h1 class="hero__h1">
+        <span class="hero__word hero__word--left">A Ritual Worth</span>
+        <span class="hero__word hero__word--right"><em>Returning To</em></span>
+      </h1>
+      <p class="hero__sub">Functional coffee crafted for clarity, balance, and lasting focus.</p>
+      <p class="hero__scroll-hint">Scroll to explore</p>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <div class="wrap--narrow">
+      <p class="intro__text" data-reveal>
+        Your morning coffee should do more than wake you up. <em>Superfocus</em> is a considered blend of nootropics, adaptogens, and superfoods &mdash; designed to sharpen the mind and sustain the body without the crash.
+      </p>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="story" id="story">
+    <div class="wrap">
+      <div class="story__layout">
+        <div class="story__col story__col--img">
+          <div class="story__img story__img--main" data-reveal>
+            <img src="Stills/DSC09199.jpg" alt="Superfocus Coffee">
+          </div>
+          <div class="story__img story__img--float" data-reveal>
+            <img src="Stills/DSC08457.jpg" alt="Coffee ritual">
+          </div>
+        </div>
+        <div class="story__col story__col--text">
+          <span class="tag" data-reveal>Our Story</span>
+          <h2 data-reveal>Built on the<br>power of <em>daily habits</em></h2>
+          <p data-reveal>Superfocus Coffee is a functional instant coffee designed for mental clarity, steady energy, and gut health. Blended with nootropics, adaptogens, and superfoods.</p>
+          <p data-reveal>A ritual designed to sharpen the mind and sustain the body &mdash; without artificial sweeteners, fillers, or unnecessary stimulants.</p>
+          <div class="story__stats" data-reveal>
+            <div class="story__stat"><strong>7+</strong><span>Functional<br>Ingredients</span></div>
+            <div class="story__stat"><strong>30</strong><span>Serves<br>Per Pouch</span></div>
+            <div class="story__stat"><strong>0</strong><span>Artificial<br>Fillers</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee__track">
+      <span>Cognitive Support</span><span class="marquee__sep">/</span>
+      <span>Sustained Energy</span><span class="marquee__sep">/</span>
+      <span>Antioxidant Boost</span><span class="marquee__sep">/</span>
+      <span>Gut Health</span><span class="marquee__sep">/</span>
+      <span>No Crash</span><span class="marquee__sep">/</span>
+      <span>No Jitters</span><span class="marquee__sep">/</span>
+      <span>Cognitive Support</span><span class="marquee__sep">/</span>
+      <span>Sustained Energy</span><span class="marquee__sep">/</span>
+      <span>Antioxidant Boost</span><span class="marquee__sep">/</span>
+      <span>Gut Health</span><span class="marquee__sep">/</span>
+      <span>No Crash</span><span class="marquee__sep">/</span>
+      <span>No Jitters</span><span class="marquee__sep">/</span>
+    </div>
+  </div>
+
+  <!-- FULL BLEED IMAGE -->
+  <section class="bleed">
+    <img src="Stills/DSC08438.jpg" alt="Coastal morning" loading="lazy">
+    <div class="bleed__overlay">
+      <blockquote data-reveal>
+        &ldquo;A ritual designed to sharpen the mind<br>and sustain the body.&rdquo;
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- PRODUCT -->
+  <section class="product" id="product">
+    <div class="wrap">
+      <div class="product__layout">
+        <div class="product__visual" data-reveal>
+          <img src="Stills/DSC09024.jpg" alt="Superfocus Coffee" loading="lazy">
+        </div>
+        <div class="product__detail">
+          <span class="tag" data-reveal>The Product</span>
+          <h2 data-reveal>Superfocus<br><em>Coffee</em></h2>
+          <p data-reveal>A considered blend of nootropics, adaptogens, and superfoods designed to support focus, balance, and steady energy.</p>
+          <div class="product__list" data-reveal>
+            <div class="product__row"><span class="product__ingredient">Lion's Mane</span><span class="product__benefit">Cognitive support</span></div>
+            <div class="product__row"><span class="product__ingredient">MCT Oil</span><span class="product__benefit">Sustained brain fuel</span></div>
+            <div class="product__row"><span class="product__ingredient">L-Theanine</span><span class="product__benefit">Calm, jitter-free focus</span></div>
+            <div class="product__row"><span class="product__ingredient">Turmeric</span><span class="product__benefit">Anti-inflammatory</span></div>
+            <div class="product__row"><span class="product__ingredient">Prebiotics</span><span class="product__benefit">Gut health</span></div>
+            <div class="product__row"><span class="product__ingredient">Monk Fruit</span><span class="product__benefit">Natural sweetener</span></div>
+          </div>
+          <div class="product__action" data-reveal>
+            <div>
+              <span class="product__price">$49.95 <small>AUD</small></span>
+              <span class="product__meta">150g &middot; 30 serves</span>
+            </div>
+            <a href="https://healthyritualscoffee.com/products/superfocus-coffee" class="btn" target="_blank" rel="noopener">Add to Ritual</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="benefits">
+    <div class="benefits__bg"></div>
+    <div class="wrap">
+      <div class="benefits__head" data-reveal>
+        <span class="tag tag--light">Why Superfocus</span>
+        <h2>What's inside<br><em>every serve</em></h2>
+      </div>
+      <div class="benefits__grid">
+        <article class="benefits__card" data-reveal>
+          <span class="benefits__n">01</span>
+          <h3>Cognitive<br>Support</h3>
+          <p>Lion's Mane supports nerve growth factor, enhancing memory, focus, and mental clarity.</p>
+        </article>
+        <article class="benefits__card" data-reveal>
+          <span class="benefits__n">02</span>
+          <h3>Sustained<br>Energy</h3>
+          <p>MCT provides long-lasting brain fuel. L-Theanine smooths caffeine for calm alertness.</p>
+        </article>
+        <article class="benefits__card" data-reveal>
+          <span class="benefits__n">03</span>
+          <h3>Antioxidant<br>Boost</h3>
+          <p>Turmeric delivers anti-inflammatory and antioxidant benefits for cellular health.</p>
+        </article>
+        <article class="benefits__card" data-reveal>
+          <span class="benefits__n">04</span>
+          <h3>Gut<br>Health</h3>
+          <p>Prebiotics nurture the microbiome, supporting digestion and immune function.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- INGREDIENTS -->
+  <section class="ingredients" id="ingredients">
+    <div class="wrap">
+      <div class="ingredients__head" data-reveal>
+        <span class="tag">The Ingredients</span>
+        <h2>Every ingredient<br>chosen with <em>purpose</em></h2>
+      </div>
+    </div>
+    <div class="ingredients__scroll">
+      <div class="ingredients__card" data-reveal>
+        <div class="ingredients__img"><img src="Ingredient Carousels/Lions Mane/Lions-Mane-1.jpg" alt="Lion's Mane" loading="lazy"></div>
+        <h3>Lion's Mane</h3><p>Cognitive support</p>
+      </div>
+      <div class="ingredients__card" data-reveal>
+        <div class="ingredients__img"><img src="Ingredient Carousels/MCT/MCT-1.jpg" alt="MCT" loading="lazy"></div>
+        <h3>MCT Oil</h3><p>Brain fuel</p>
+      </div>
+      <div class="ingredients__card" data-reveal>
+        <div class="ingredients__img"><img src="Ingredient Carousels/L-Theanine/L-Theanine-1.jpg" alt="L-Theanine" loading="lazy"></div>
+        <h3>L-Theanine</h3><p>Calm focus</p>
+      </div>
+      <div class="ingredients__card" data-reveal>
+        <div class="ingredients__img"><img src="Ingredient Carousels/L-Carnitine/L-Carnitine-1.jpg" alt="L-Carnitine" loading="lazy"></div>
+        <h3>L-Carnitine</h3><p>Energy metabolism</p>
+      </div>
+      <div class="ingredients__card" data-reveal>
+        <div class="ingredients__img"><img src="Ingredient Carousels/Prebiotics/Prebiotics-1.jpg" alt="Prebiotics" loading="lazy"></div>
+        <h3>Prebiotics</h3><p>Gut balance</p>
+      </div>
+      <div class="ingredients__card" data-reveal>
+        <div class="ingredients__img"><img src="Ingredient Carousels/Turmeric/Turmeric-1.jpg" alt="Turmeric" loading="lazy"></div>
+        <h3>Turmeric</h3><p>Anti-inflammatory</p>
+      </div>
+      <div class="ingredients__card" data-reveal>
+        <div class="ingredients__img"><img src="Ingredient Carousels/Monk Fruit/MONK-1.png" alt="Monk Fruit" loading="lazy"></div>
+        <h3>Monk Fruit</h3><p>Natural sweetener</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery">
+    <div class="gallery__row">
+      <div class="gallery__item gallery__item--wide" data-reveal><img src="Stills/DSC09429.jpg" alt="Morning ritual" loading="lazy"></div>
+      <div class="gallery__item gallery__item--tall" data-reveal><img src="Stills/DSC08411.jpg" alt="Enjoying coffee" loading="lazy"></div>
+    </div>
+    <div class="gallery__row gallery__row--offset">
+      <div class="gallery__item gallery__item--sq" data-reveal><img src="Stills/DSC03448.jpg" alt="Beach" loading="lazy"></div>
+      <div class="gallery__item gallery__item--wide" data-reveal><img src="Stills/DSC09261.jpg" alt="Meditation" loading="lazy"></div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews" id="reviews">
+    <div class="wrap">
+      <div class="reviews__head" data-reveal>
+        <span class="tag">Reviews</span>
+        <h2>What people<br><em>are saying</em></h2>
+      </div>
+      <div class="reviews__grid">
+        <div class="reviews__card" data-reveal>
+          <div class="reviews__stars">&starf;&starf;&starf;&starf;&starf;</div>
+          <p>&ldquo;Finally a coffee that doesn't leave me crashing by 2pm. The focus is real and I love knowing every ingredient has a purpose.&rdquo;</p>
+          <cite>Sarah M.</cite>
+        </div>
+        <div class="reviews__card" data-reveal>
+          <div class="reviews__stars">&starf;&starf;&starf;&starf;&starf;</div>
+          <p>&ldquo;I've tried MUD/WTR and others. This is the one I keep coming back to. Smooth taste, no jitters, and my gut thanks me.&rdquo;</p>
+          <cite>James T.</cite>
+        </div>
+        <div class="reviews__card" data-reveal>
+          <div class="reviews__stars">&starf;&starf;&starf;&starf;&starf;</div>
+          <p>&ldquo;As a creative, I need calm clarity not wired anxiety. Superfocus gives me exactly that. My non-negotiable morning ritual.&rdquo;</p>
+          <cite>Mia L.</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="wrap--narrow">
+      <div class="faq__head" data-reveal>
+        <span class="tag">Common Questions</span>
+        <h2>Got questions?<br><em>We've got answers</em></h2>
+      </div>
+      <div class="faq__list">
+
+        <details class="faq__item" data-reveal>
+          <summary class="faq__q">Will I trip on mushrooms?</summary>
+          <div class="faq__a"><p>Nope. Our coffee contains Lion's Mane, not the "magic" kind. It's 100% legal and functional — designed to boost brain power, not make you talk to your plants. You'll get clarity, not hallucinations.</p></div>
+        </details>
+
+        <details class="faq__item" data-reveal>
+          <summary class="faq__q">How much caffeine are we talkin'?</summary>
+          <div class="faq__a"><p>Each serving has 89mg of caffeine — that's less than a standard cup (which averages 95–120mg). It's enough to energize you, but with L-theanine, MCTs, and Lion's Mane, you get smooth focus without the crash, jitters, or 3pm regrets.</p></div>
+        </details>
+
+        <details class="faq__item" data-reveal>
+          <summary class="faq__q">Is this better than regular coffee?</summary>
+          <div class="faq__a"><p>In our humble opinion, yes. Regular coffee gives you a spike and a slump. Ours gives you focus, clean energy, gut support, and mood balance — thanks to nootropics, prebiotics, and adaptogens. Plus, no crash = no brainer.</p></div>
+        </details>
+
+        <details class="faq__item" data-reveal>
+          <summary class="faq__q">What's actually in this stuff?</summary>
+          <div class="faq__a"><p>Instant Arabica Coffee, Lion's Mane Mushroom, L-Theanine + L-Carnitine, MCT Oil, Prebiotic Fiber (Dextrin, Green Banana, Acacia), Turmeric + Black Pepper, Lucuma, Cinnamon, Monk Fruit, and Natural Flavors. All clean. All functional. No weird fillers or fake sweeteners.</p></div>
+        </details>
+
+        <details class="faq__item" data-reveal>
+          <summary class="faq__q">Will it break my fast?</summary>
+          <div class="faq__a"><p>Not at all. Each serving has just 16 calories, 0.2g sugar, and 1.2g fiber. It's fasting-friendly and even helps support digestion. Stay focused, stay fasted.</p></div>
+        </details>
+
+        <details class="faq__item" data-reveal>
+          <summary class="faq__q">What does it taste like?</summary>
+          <div class="faq__a"><p>Like real coffee — because it is. Smooth, rich, and slightly earthy with a hint of cinnamon and turmeric. No mushroom flavor. No weird aftertaste. Just a cup that tastes as good as it makes you feel.</p></div>
+        </details>
+
+        <details class="faq__item" data-reveal>
+          <summary class="faq__q">Can I drink it every day?</summary>
+          <div class="faq__a"><p>Absolutely. It's designed for daily performance. Morning rituals, pre-workout, or mid-afternoon reset — you're good to go. If you're pregnant, breastfeeding, or on meds, just check with your doc first.</p></div>
+        </details>
+
+        <details class="faq__item" data-reveal>
+          <summary class="faq__q">How do I make it?</summary>
+          <div class="faq__a"><p>Add 1 tsp to hot water. Stir. Sip. That's it. Want to froth it up with oat milk? Go for it. Iced? Totally. Add your ritual, your way.</p></div>
+        </details>
+
+        <details class="faq__item" data-reveal>
+          <summary class="faq__q">Is it vegan & gluten-free?</summary>
+          <div class="faq__a"><p>Yes and yes. It's vegan, gluten-free, dairy-free, soy-free, and keto-friendly. No nonsense. Just functional ingredients your body loves.</p></div>
+        </details>
+
+        <details class="faq__item" data-reveal>
+          <summary class="faq__q">Where do you ship & how fast?</summary>
+          <div class="faq__a"><p>We ship to Australia (3–5 business days), the USA (7–14 business days), and worldwide (usually 7–21 days depending on country).</p></div>
+        </details>
+
+        <details class="faq__item" data-reveal>
+          <summary class="faq__q">What if I hate it?</summary>
+          <div class="faq__a"><p>We doubt it. But if you're not feeling the magic, no stress. We've got a 30-day money-back guarantee. No hoops. Just shoot us a message — love it or get a full refund.</p></div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta__bg"></div>
+    <div class="wrap">
+      <div class="cta__inner" data-reveal>
+        <p class="cta__tag">Start Your Ritual</p>
+        <h2>Find your<br><em>ritual</em></h2>
+        <p class="cta__sub">Sharpen the mind. Sustain the body.</p>
+        <a href="https://healthyritualscoffee.com/products/superfocus-coffee" class="btn btn--cream" target="_blank" rel="noopener">Shop Superfocus Coffee</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="Logo-SVG/Healthy_Rituals_Logo_Suite (2)-1.svg" alt="Healthy Rituals" class="footer__logo">
+          <p>Built on the power of daily habits.</p>
+        </div>
+        <div class="footer__links">
+          <div class="footer__col">
+            <span>Navigate</span>
+            <a href="#story">Story</a>
+            <a href="#product">Product</a>
+            <a href="#ingredients">Ingredients</a>
+          </div>
+          <div class="footer__col">
+            <span>Shop</span>
+            <a href="https://healthyritualscoffee.com/products/superfocus-coffee" target="_blank" rel="noopener">Superfocus Coffee</a>
+            <a href="https://healthyritualscoffee.com" target="_blank" rel="noopener">All Products</a>
+          </div>
+          <div class="footer__col">
+            <span>Connect</span>
+            <a href="https://instagram.com/healthyrituals.coffee" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://healthyritualscoffee.com.au" target="_blank" rel="noopener">Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2025 Healthy Rituals Coffee. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
