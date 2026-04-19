@@ -533,7 +533,7 @@ h2 em {
 /* ============ REVIEWS ============ */
 .reviews { padding:0 0 160px; }
 .reviews__head { text-align:center;margin-bottom:72px; }
-.reviews__grid { display:grid;grid-template-columns:repeat(3,1fr);gap:32px; }
+.reviews__grid { display:grid;grid-template-columns:repeat(3,1fr);gap:32px;align-items:start; }
 .reviews__card {
   padding:48px 40px;background:var(--cream2);
   transition:transform 0.4s var(--ease);
