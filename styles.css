@@ -126,7 +126,7 @@ h2 em {
   display:flex;align-items:center;justify-content:space-between;
 }
 .nav__logo img {
-  height:30px;width:auto;
+  height:42px;width:auto;
   filter:brightness(0) invert(1);
   transition:filter 0.5s;
 }
