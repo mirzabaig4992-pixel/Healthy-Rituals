@@ -389,10 +389,10 @@ h2 em {
 /* ============ BLEED ============ */
 .bleed {
   position:relative;margin:120px 0;
-  height:70vh;overflow:hidden;
+  overflow:hidden;
 }
 .bleed img {
-  width:100%;height:100%;object-fit:cover;
+  width:100%;height:auto;display:block;
   transition:transform 1.2s var(--ease);
 }
 .bleed__overlay {
@@ -950,7 +950,7 @@ h2 em {
   .reviews{padding:0 0 100px}
   .reviews__card{width:300px}
   .cta{padding:120px 0}
-  .bleed{height:50vh;margin:80px 0}
+  .bleed{margin:80px 0}
   .story__img--float{position:relative;bottom:auto;right:auto;width:65%;margin-top:-40px;margin-left:auto}
   .story__stats{gap:24px}
   .story__stat strong{font-size:2rem}
