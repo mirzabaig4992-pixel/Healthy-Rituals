@@ -393,6 +393,7 @@ h2 em {
 }
 .bleed img {
   width:100%;height:100%;object-fit:cover;
+  object-position:center 18%;
   transition:transform 1.2s var(--ease);
 }
 .bleed__overlay {
@@ -951,6 +952,7 @@ h2 em {
   .reviews__card{width:300px}
   .cta{padding:120px 0}
   .bleed{height:50vh;margin:80px 0}
+  .bleed img{object-position:center center}
   .story__img--float{position:relative;bottom:auto;right:auto;width:65%;margin-top:-40px;margin-left:auto}
   .story__stats{gap:24px}
   .story__stat strong{font-size:2rem}
