@@ -309,16 +309,25 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---- DRAG TO SCROLL ---- */
   const track = document.querySelector('.ingredients__scroll');
   if (track) {
-    let down = false, sx, sl;
+    let down = false, sx, sl, moved = false;
     track.addEventListener('mousedown', e => {
-      down = true; track.style.cursor = 'grabbing';
+      down = true; moved = false; track.style.cursor = 'grabbing';
       sx = e.pageX - track.offsetLeft; sl = track.scrollLeft;
     });
     track.addEventListener('mouseleave', () => { down = false; track.style.cursor = 'grab'; });
     track.addEventListener('mouseup', () => { down = false; track.style.cursor = 'grab'; });
     track.addEventListener('mousemove', e => {
       if (!down) return; e.preventDefault();
+      if (Math.abs((e.pageX - track.offsetLeft) - sx) > 5) moved = true;
       track.scrollLeft = sl - ((e.pageX - track.offsetLeft) - sx) * 1.8;
+    });
+
+    /* ---- CLICK TO FLIP ---- */
+    document.querySelectorAll('.ingredients__card').forEach(card => {
+      card.addEventListener('click', () => {
+        if (moved) { moved = false; return; }
+        card.classList.toggle('is-flipped');
+      });
     });
 
     /* ---- ARROW NAVIGATION ---- */
