@@ -62,6 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---- SCROLL-EXPANDING HERO ---- */
   const hero = document.getElementById('hero');
   const heroMedia = document.getElementById('heroMedia');
+
+  // Pages without the scroll-expand hero (e.g. About) skip the lock entirely
+  if (!hero || !heroMedia) {
+    initScrollAnimations();
+    return;
+  }
+
   const heroWordLeft = document.querySelector('.hero__word--left');
   const heroWordRight = document.querySelector('.hero__word--right');
   const heroBgImage = document.querySelector('.hero__bg-image');
