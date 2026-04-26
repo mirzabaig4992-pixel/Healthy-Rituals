@@ -320,6 +320,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!down) return; e.preventDefault();
       track.scrollLeft = sl - ((e.pageX - track.offsetLeft) - sx) * 1.8;
     });
+
+    /* ---- ARROW NAVIGATION ---- */
+    const prevBtn = document.querySelector('.ingredients__nav--prev');
+    const nextBtn = document.querySelector('.ingredients__nav--next');
+    const stepBy = () => {
+      const card = track.querySelector('.ingredients__card');
+      return card ? card.offsetWidth + 32 : 320;
+    };
+    if (prevBtn) prevBtn.addEventListener('click', () => track.scrollBy({ left: -stepBy(), behavior: 'smooth' }));
+    if (nextBtn) nextBtn.addEventListener('click', () => track.scrollBy({ left: stepBy(), behavior: 'smooth' }));
   }
 
   /* ---- MARQUEE DUPLICATE for seamless loop ---- */
