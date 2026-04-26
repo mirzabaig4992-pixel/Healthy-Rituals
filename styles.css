@@ -131,7 +131,9 @@ h2 em {
   filter:brightness(0) invert(1);
   transition:filter 0.5s;
 }
-.nav.is-scrolled .nav__logo img { filter:none; }
+.nav.is-scrolled .nav__logo img {
+  filter:brightness(0) saturate(100%) invert(13%) sepia(38%) saturate(2200%) hue-rotate(67deg) brightness(94%) contrast(98%);
+}
 
 .nav__center {display:flex;gap:32px}
 .nav__center a, .nav__shop {
@@ -857,7 +859,9 @@ h2 em {
   box-shadow:0 1px 0 rgba(0,0,0,0.04);
   padding:14px 0;
 }
-.nav--solid .nav__logo img { filter:none; }
+.nav--solid .nav__logo img {
+  filter:brightness(0) saturate(100%) invert(13%) sepia(38%) saturate(2200%) hue-rotate(67deg) brightness(94%) contrast(98%);
+}
 .nav--solid .nav__center a, .nav--solid .nav__shop { color:var(--grey); }
 .nav--solid .nav__center a:hover, .nav--solid .nav__shop:hover { color:var(--dark); }
 .nav--solid .nav__shop { border-color:var(--green); color:var(--green); }
