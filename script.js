@@ -353,4 +353,247 @@ document.addEventListener('DOMContentLoaded', () => {
     reviewsTrack.innerHTML += reviewsTrack.innerHTML;
   }
 
+  /* =============================================
+     CART DRAWER + SHOPIFY
+     ============================================= */
+  const cartEl = document.getElementById('cart');
+  if (cartEl && window.HRShopify) initCart();
+
+  function initCart() {
+    const cartBody = document.getElementById('cartBody');
+    const cartFooter = document.getElementById('cartFooter');
+    const cartSubtotal = document.getElementById('cartSubtotal');
+    const cartCheckout = document.getElementById('cartCheckout');
+    const navCartCount = document.getElementById('navCartCount');
+
+    let ready = false;
+    const picker = { plan: 'onetime', qty: 1 };
+
+    const escapeHtml = (s = '') => s.replace(/[&<>"']/g, c =>
+      ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c])
+    );
+
+    async function ensureReady() {
+      if (ready) return;
+      await Promise.all([
+        HRShopify.loadProduct(),
+        HRShopify.loadCart(),
+      ]);
+      ready = true;
+    }
+
+    function openCart() {
+      cartEl.classList.add('is-open');
+      cartEl.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      ensureReady()
+        .then(render)
+        .catch(err => {
+          console.error(err);
+          cartBody.innerHTML = `<div class="cart__error">Couldn’t load product. Please try again.</div>`;
+          cartFooter.hidden = true;
+        });
+    }
+    function closeCart() {
+      cartEl.classList.remove('is-open');
+      cartEl.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('[data-cart-open]').forEach(b =>
+      b.addEventListener('click', () => {
+        if (mob && mob.classList.contains('is-active')) {
+          burger.classList.remove('is-active');
+          mob.classList.remove('is-active');
+        }
+        openCart();
+      })
+    );
+    document.querySelectorAll('[data-cart-close]').forEach(b =>
+      b.addEventListener('click', closeCart)
+    );
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && cartEl.classList.contains('is-open')) closeCart();
+    });
+
+    function updateNavCount() {
+      const count = HRShopify.cart?.totalQuantity || 0;
+      if (!navCartCount) return;
+      if (count > 0) { navCartCount.textContent = count; navCartCount.hidden = false; }
+      else navCartCount.hidden = true;
+    }
+
+    function render() {
+      updateNavCount();
+      const cart = HRShopify.cart;
+      const lines = cart?.lines?.edges || [];
+      if (lines.length > 0) renderLines(cart, lines);
+      else renderPicker();
+    }
+
+    function renderPicker() {
+      const p = HRShopify.product;
+      const variant = HRShopify.pickVariant();
+      const plan = HRShopify.pickSellingPlan();
+      if (!p || !variant) {
+        cartBody.innerHTML = `<div class="cart__error">Product unavailable.</div>`;
+        cartFooter.hidden = true;
+        return;
+      }
+      const price = HRShopify.formatPrice(variant.price.amount, variant.price.currencyCode);
+      let subPrice = price;
+      let subSaving = '';
+      if (plan) {
+        const computed = HRShopify.computePlanPrice(variant, plan);
+        if (computed) subPrice = HRShopify.formatPrice(computed.amount, computed.currency);
+        const pct = HRShopify.planSavingPercent(plan);
+        subSaving = pct ? `Save ${pct}%` : 'Subscribe & save';
+      }
+
+      cartBody.innerHTML = `
+        <div class="cart__picker">
+          ${p.featuredImage ? `
+            <div class="cart__picker-img">
+              <img src="${p.featuredImage.url}" alt="${escapeHtml(p.featuredImage.altText || p.title)}">
+            </div>` : ''}
+          <div>
+            <div class="cart__picker-title">${escapeHtml(p.title)}</div>
+            <div class="cart__picker-meta">150g · 30 serves</div>
+          </div>
+          ${plan ? `
+            <div class="cart__plans">
+              <button type="button" class="cart__plan ${picker.plan === 'onetime' ? 'is-active' : ''}" data-plan="onetime">
+                <span class="cart__plan-label">One-time</span>
+                <span class="cart__plan-price">${price}</span>
+              </button>
+              <button type="button" class="cart__plan ${picker.plan === 'subscribe' ? 'is-active' : ''}" data-plan="subscribe">
+                <span class="cart__plan-label">Subscribe</span>
+                <span class="cart__plan-price">${subPrice}</span>
+                <span class="cart__plan-save">${escapeHtml(subSaving)}</span>
+              </button>
+            </div>` : ''}
+          <div class="cart__picker-actions">
+            <div class="cart__qty">
+              <button type="button" data-picker-minus aria-label="Decrease">−</button>
+              <span id="pickerQty">${picker.qty}</span>
+              <button type="button" data-picker-plus aria-label="Increase">+</button>
+            </div>
+            <button type="button" class="btn" id="cartAddBtn">Add to Ritual</button>
+          </div>
+        </div>
+      `;
+      cartFooter.hidden = true;
+      bindPicker();
+    }
+
+    function bindPicker() {
+      cartBody.querySelectorAll('[data-plan]').forEach(b =>
+        b.addEventListener('click', () => {
+          picker.plan = b.dataset.plan;
+          cartBody.querySelectorAll('[data-plan]').forEach(x =>
+            x.classList.toggle('is-active', x.dataset.plan === picker.plan)
+          );
+        })
+      );
+      const qtyEl = cartBody.querySelector('#pickerQty');
+      cartBody.querySelector('[data-picker-minus]')?.addEventListener('click', () => {
+        if (picker.qty > 1) { picker.qty--; qtyEl.textContent = picker.qty; }
+      });
+      cartBody.querySelector('[data-picker-plus]')?.addEventListener('click', () => {
+        picker.qty++; qtyEl.textContent = picker.qty;
+      });
+      cartBody.querySelector('#cartAddBtn')?.addEventListener('click', async (e) => {
+        const btn = e.currentTarget;
+        btn.disabled = true; btn.textContent = 'Adding…';
+        try {
+          const variant = HRShopify.pickVariant();
+          const planId = picker.plan === 'subscribe'
+            ? HRShopify.pickSellingPlan()?.id
+            : null;
+          await HRShopify.addLine(variant.id, picker.qty, planId);
+          picker.qty = 1;
+          render();
+        } catch (err) {
+          console.error(err);
+          btn.disabled = false; btn.textContent = 'Try again';
+        }
+      });
+    }
+
+    function renderLines(cart, lines) {
+      const linesHtml = lines.map(({ node: line }) => {
+        const m = line.merchandise;
+        const total = HRShopify.formatPrice(
+          line.cost.totalAmount.amount,
+          line.cost.totalAmount.currencyCode
+        );
+        const planName = line.sellingPlanAllocation?.sellingPlan?.name || 'One-time purchase';
+        const imgUrl = m.image?.url || '';
+        return `
+          <div class="cart__line" data-line="${line.id}">
+            <div class="cart__line-img">
+              ${imgUrl ? `<img src="${imgUrl}" alt="">` : ''}
+            </div>
+            <div class="cart__line-info">
+              <div class="cart__line-top">
+                <div>
+                  <div class="cart__line-title">${escapeHtml(m.product.title)}</div>
+                  <div class="cart__line-plan">${escapeHtml(planName)}</div>
+                </div>
+                <span class="cart__line-price">${total}</span>
+              </div>
+              <div class="cart__line-actions">
+                <div class="cart__qty">
+                  <button type="button" data-line-minus="${line.id}" aria-label="Decrease">−</button>
+                  <span>${line.quantity}</span>
+                  <button type="button" data-line-plus="${line.id}" aria-label="Increase">+</button>
+                </div>
+                <button type="button" class="cart__line-remove" data-line-remove="${line.id}">Remove</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+      cartBody.innerHTML = linesHtml;
+      cartFooter.hidden = false;
+      const sub = cart.cost.subtotalAmount;
+      cartSubtotal.textContent = HRShopify.formatPrice(sub.amount, sub.currencyCode);
+    }
+
+    cartBody.addEventListener('click', async (e) => {
+      const minusBtn = e.target.closest('[data-line-minus]');
+      const plusBtn = e.target.closest('[data-line-plus]');
+      const removeBtn = e.target.closest('[data-line-remove]');
+      const target = minusBtn || plusBtn || removeBtn;
+      if (!target) return;
+      const lineId = target.dataset.lineMinus || target.dataset.linePlus || target.dataset.lineRemove;
+      const line = HRShopify.cart?.lines.edges.find(({ node }) => node.id === lineId)?.node;
+      target.disabled = true;
+      try {
+        if (removeBtn) {
+          await HRShopify.removeLine(lineId);
+        } else if (line) {
+          const newQty = line.quantity + (minusBtn ? -1 : 1);
+          await HRShopify.updateLineQty(lineId, newQty);
+        }
+        render();
+      } catch (err) {
+        console.error(err);
+        target.disabled = false;
+      }
+    });
+
+    if (cartCheckout) {
+      cartCheckout.addEventListener('click', () => {
+        const url = HRShopify.cart?.checkoutUrl;
+        if (url) window.location.href = url;
+      });
+    }
+
+    /* Restore cart on load to show count badge */
+    HRShopify.loadCart()
+      .then(() => updateNavCount())
+      .catch(() => {});
+  }
+
 });
