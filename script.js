@@ -586,9 +586,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cartCheckout) {
       cartCheckout.addEventListener('click', () => {
         const url = HRShopify.cart?.checkoutUrl;
-        if (!url) return;
-        const fixed = url.replace(/:\/\/(www\.)?healthyritualscoffee\.com\//, '://ccht0j-m0.myshopify.com/');
-        window.location.href = fixed;
+        if (url) window.location.href = url;
       });
     }
 
