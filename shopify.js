@@ -32,7 +32,7 @@ async function gql(query, variables = {}) {
 
 /* ---- PRODUCT QUERY ---- */
 const PRODUCT_QUERY = `
-  query GetProduct($handle: String!) {
+  query GetProduct($handle: String!) @inContext(country: US) {
     product(handle: $handle) {
       id
       title
@@ -114,7 +114,7 @@ const CART_FRAGMENT = `
 
 const CART_CREATE = `
   ${CART_FRAGMENT}
-  mutation CartCreate($input: CartInput!) {
+  mutation CartCreate($input: CartInput!) @inContext(country: US) {
     cartCreate(input: $input) {
       cart { ...CartFields }
       userErrors { field message }
@@ -124,12 +124,12 @@ const CART_CREATE = `
 
 const CART_GET = `
   ${CART_FRAGMENT}
-  query GetCart($id: ID!) { cart(id: $id) { ...CartFields } }
+  query GetCart($id: ID!) @inContext(country: US) { cart(id: $id) { ...CartFields } }
 `;
 
 const CART_LINES_ADD = `
   ${CART_FRAGMENT}
-  mutation CartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
+  mutation CartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) @inContext(country: US) {
     cartLinesAdd(cartId: $cartId, lines: $lines) {
       cart { ...CartFields }
       userErrors { field message }
@@ -139,7 +139,7 @@ const CART_LINES_ADD = `
 
 const CART_LINES_UPDATE = `
   ${CART_FRAGMENT}
-  mutation CartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+  mutation CartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) @inContext(country: US) {
     cartLinesUpdate(cartId: $cartId, lines: $lines) {
       cart { ...CartFields }
       userErrors { field message }
@@ -149,7 +149,7 @@ const CART_LINES_UPDATE = `
 
 const CART_LINES_REMOVE = `
   ${CART_FRAGMENT}
-  mutation CartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
+  mutation CartLinesRemove($cartId: ID!, $lineIds: [ID!]!) @inContext(country: US) {
     cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
       cart { ...CartFields }
       userErrors { field message }
