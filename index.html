@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Healthy Rituals | Superfocus Coffee</title>
   <meta name="description" content="A ritual worth returning to. Superfocus Coffee — nootropics, adaptogens, and superfoods for mental clarity, sustained energy, and gut health.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -31,8 +33,12 @@
         <a href="#ingredients">Ingredients</a>
         <a href="about.html">About</a>
       </div>
-      <button type="button" class="nav__shop" data-cart-open>
-        <span>Shop</span>
+      <a href="product.html" class="nav__shop">Shop</a>
+      <button type="button" class="nav__cart" data-cart-open aria-label="Open cart">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 7h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 7Z"/>
+          <path d="M9 7V5a3 3 0 0 1 6 0v2"/>
+        </svg>
         <span class="nav__cart-count" id="navCartCount" hidden>0</span>
       </button>
       <button class="nav__burger" id="navBurger" aria-label="Menu"><span></span><span></span></button>
@@ -45,7 +51,7 @@
     <a href="#product" class="mob__link">Product</a>
     <a href="#ingredients" class="mob__link">Ingredients</a>
     <a href="about.html" class="mob__link">About</a>
-    <button type="button" class="mob__link mob__link--btn" data-cart-open>Shop</button>
+    <a href="product.html" class="mob__link mob__link--btn">Shop</a>
   </div>
 
   <!-- HERO — Scroll-Expanding Video -->
@@ -164,7 +170,7 @@
               <span class="product__price">$32.95 <small>USD</small></span>
               <span class="product__meta">150g &middot; 30 serves</span>
             </div>
-            <button type="button" class="btn" data-cart-open>Add to Ritual</button>
+            <a href="product.html" class="btn">Add to Ritual</a>
           </div>
         </div>
       </div>
@@ -568,7 +574,7 @@
         <p class="cta__tag">Start Your Ritual</p>
         <h2>Find your<br><em>ritual</em></h2>
         <p class="cta__sub">Sharpen the mind. Sustain the body.</p>
-        <button type="button" class="btn btn--cream" data-cart-open>Shop Superfocus Coffee</button>
+        <a href="product.html" class="btn btn--cream">Shop Superfocus Coffee</a>
       </div>
     </div>
   </section>
@@ -591,8 +597,8 @@
           </div>
           <div class="footer__col">
             <span>Shop</span>
-            <button type="button" data-cart-open class="footer__btn">Superfocus Coffee</button>
-            <button type="button" data-cart-open class="footer__btn">Add to Ritual</button>
+            <a href="product.html" class="footer__btn">Superfocus Coffee</a>
+            <a href="product.html" class="footer__btn">Add to Ritual</a>
           </div>
           <div class="footer__col">
             <span>Connect</span>

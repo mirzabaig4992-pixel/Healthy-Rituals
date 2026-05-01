@@ -4,6 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   gsap.registerPlugin(ScrollTrigger);
+  let scrollAnimsInit = false;
 
   /* ---- LOADER ---- */
   const loader = document.getElementById('loader');
@@ -63,9 +64,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const hero = document.getElementById('hero');
   const heroMedia = document.getElementById('heroMedia');
 
-  // Pages without the scroll-expand hero (e.g. About) skip the lock entirely
+  // Pages without the scroll-expand hero (e.g. About, Product) skip the lock
+  // but still need cart + product page init to run.
   if (!hero || !heroMedia) {
     initScrollAnimations();
+    const _cart = document.getElementById('cart');
+    if (_cart && window.HRShopify) initCart();
+    if (document.querySelector('.pdp') && window.HRShopify) initProductPage();
     return;
   }
 
@@ -196,8 +201,6 @@ document.addEventListener('DOMContentLoaded', () => {
   updateHero(0);
 
   /* ---- INIT SCROLL ANIMATIONS (deferred until hero expands) ---- */
-  let scrollAnimsInit = false;
-
   function initScrollAnimations() {
     if (scrollAnimsInit) return;
     scrollAnimsInit = true;
@@ -360,6 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (cartEl && window.HRShopify) initCart();
 
   function initCart() {
+    const cartEl = document.getElementById('cart');
     const cartBody = document.getElementById('cartBody');
     const cartFooter = document.getElementById('cartFooter');
     const cartSubtotal = document.getElementById('cartSubtotal');
@@ -594,6 +598,171 @@ document.addEventListener('DOMContentLoaded', () => {
     HRShopify.loadCart()
       .then(() => updateNavCount())
       .catch(() => {});
+
+    window.HRCart = {
+      open: openCart,
+      close: closeCart,
+      refreshCount: updateNavCount,
+    };
+  }
+
+  /* =============================================
+     PRODUCT PAGE
+     ============================================= */
+  if (document.querySelector('.pdp') && window.HRShopify) initProductPage();
+
+  function initProductPage() {
+    const state = { plan: 'onetime', qty: 1 };
+    let oneTimePrice = 32.95;
+    let subPrice = 28.01;
+    let currency = 'USD';
+
+    const mainImg = document.getElementById('pdpMainImage');
+    const thumbs = document.querySelectorAll('.pdp__thumb');
+    const planCards = document.querySelectorAll('.pdp__plan-card');
+    const qtyEl = document.getElementById('pdpQtyValue');
+    const onetimeEl = document.getElementById('pdpPriceOnetime');
+    const subEl = document.getElementById('pdpPriceSub');
+    const badgeEl = document.getElementById('pdpPlanBadge');
+    const metaEl = document.getElementById('pdpPlanMeta');
+    const addPriceEl = document.getElementById('pdpAddPrice');
+    const addBtn = document.getElementById('pdpAddToCart');
+    const addText = document.getElementById('pdpAddText');
+
+    /* Gallery thumbnails */
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        const src = thumb.dataset.src;
+        const alt = thumb.dataset.alt || '';
+        if (!src) return;
+        mainImg.style.opacity = '0';
+        setTimeout(() => {
+          mainImg.src = src;
+          mainImg.alt = alt;
+          mainImg.style.opacity = '1';
+        }, 180);
+        thumbs.forEach(t => t.classList.toggle('is-active', t === thumb));
+      });
+    });
+
+    /* Plan picker */
+    planCards.forEach(card => {
+      card.addEventListener('click', () => {
+        state.plan = card.dataset.plan;
+        planCards.forEach(c => c.classList.toggle('is-active', c === card));
+        updateAddPrice();
+      });
+    });
+
+    /* Quantity stepper */
+    document.getElementById('pdpQtyMinus')?.addEventListener('click', () => {
+      if (state.qty > 1) {
+        state.qty--;
+        qtyEl.textContent = state.qty;
+        updateAddPrice();
+      }
+    });
+    document.getElementById('pdpQtyPlus')?.addEventListener('click', () => {
+      state.qty++;
+      qtyEl.textContent = state.qty;
+      updateAddPrice();
+    });
+
+    function updateAddPrice() {
+      const unit = state.plan === 'subscribe' ? subPrice : oneTimePrice;
+      addPriceEl.textContent = HRShopify.formatPrice(
+        (unit * state.qty).toFixed(2),
+        currency
+      );
+    }
+
+    /* Load real product data from Shopify */
+    HRShopify.loadProduct()
+      .then(product => {
+        const variant = HRShopify.pickVariant();
+        const plan = HRShopify.pickSellingPlan();
+        if (variant) {
+          oneTimePrice = parseFloat(variant.price.amount);
+          currency = variant.price.currencyCode;
+          onetimeEl.textContent = HRShopify.formatPrice(oneTimePrice, currency);
+        }
+        if (variant && plan) {
+          const computed = HRShopify.computePlanPrice(variant, plan);
+          if (computed) {
+            subPrice = computed.amount;
+            currency = computed.currency;
+            subEl.textContent = HRShopify.formatPrice(subPrice, currency);
+          }
+          const pct = HRShopify.planSavingPercent(plan);
+          if (pct && badgeEl) badgeEl.textContent = `Save ${pct}%`;
+          if (metaEl && plan.name) {
+            metaEl.textContent = `${plan.name} · cancel anytime`;
+          }
+        }
+        updateAddPrice();
+
+        if (product?.id) {
+          const numericId = String(product.id).split('/').pop();
+          document.querySelectorAll('.yotpo-widget-instance').forEach(el => {
+            el.setAttribute('data-yotpo-product-id', numericId);
+          });
+          const reviewsEl = document.querySelector('#yotpo-widget-mount .yotpo-widget-instance');
+          if (reviewsEl && variant) {
+            reviewsEl.setAttribute('data-yotpo-price', variant.price.amount);
+            reviewsEl.setAttribute('data-yotpo-currency', variant.price.currencyCode);
+          }
+          loadYotpoWidget();
+        }
+      })
+      .catch(err => console.error('PDP product load failed:', err));
+
+    /* Add to cart */
+    addBtn?.addEventListener('click', async () => {
+      if (addBtn.classList.contains('is-loading')) return;
+      addBtn.classList.add('is-loading');
+      const original = addText.textContent;
+      addText.textContent = 'Adding…';
+      try {
+        const variant = HRShopify.pickVariant();
+        if (!variant) throw new Error('No variant available');
+        const planId = state.plan === 'subscribe'
+          ? HRShopify.pickSellingPlan()?.id
+          : null;
+        await HRShopify.addLine(variant.id, state.qty, planId);
+        window.HRCart?.refreshCount();
+        addText.textContent = 'Added';
+        setTimeout(() => {
+          window.HRCart?.open();
+          addText.textContent = original;
+          addBtn.classList.remove('is-loading');
+        }, 250);
+      } catch (err) {
+        console.error(err);
+        addText.textContent = 'Try again';
+        addBtn.classList.remove('is-loading');
+      }
+    });
+
+    /* Final-CTA "Add to Ritual" scrolls back to top */
+    document.getElementById('pdpScrollTop')?.addEventListener('click', e => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* Yotpo widget — injected after the product ID is in the DOM
+       so the widget scans the populated data-product-id on first load. */
+    function loadYotpoWidget() {
+      if (document.getElementById('yotpo-widget-script')) {
+        // Already loaded — re-init in case of late re-render
+        window.yotpoWidgetsContainer?.initWidgets?.();
+        return;
+      }
+      const s = document.createElement('script');
+      s.id = 'yotpo-widget-script';
+      s.async = true;
+      s.src = 'https://cdn-widgetsrepository.yotpo.com/v1/loader/6NYwcfyCGLzpmEb06YqMYzPR0KKI7GfoGDD3Fnin';
+      document.head.appendChild(s);
+    }
   }
 
 });

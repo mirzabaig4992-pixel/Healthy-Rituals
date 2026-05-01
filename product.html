@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Superfocus Coffee | Healthy Rituals</title>
+  <meta name="description" content="Superfocus Coffee — a daily blend of nootropics, adaptogens, and superfoods designed for clarity, balance, and steady focus.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-product">
+
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <div class="loader__logo">
+      <img src="Logo-SVG/Healthy_Rituals_Logo_Suite (2)-1.svg" alt="">
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav nav--solid" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <img src="Logo-SVG/Healthy_Rituals_Logo_Suite (2)-1.svg" alt="Healthy Rituals">
+      </a>
+      <div class="nav__center">
+        <a href="index.html#story">Story</a>
+        <a href="product.html" class="is-active">Product</a>
+        <a href="index.html#ingredients">Ingredients</a>
+        <a href="about.html">About</a>
+      </div>
+      <a href="product.html" class="nav__shop">Shop</a>
+      <button type="button" class="nav__cart" data-cart-open aria-label="Open cart">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 7h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 7Z"/>
+          <path d="M9 7V5a3 3 0 0 1 6 0v2"/>
+        </svg>
+        <span class="nav__cart-count" id="navCartCount" hidden>0</span>
+      </button>
+      <button class="nav__burger" id="navBurger" aria-label="Menu"><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mob" id="mob">
+    <a href="index.html#story" class="mob__link">Story</a>
+    <a href="product.html" class="mob__link">Product</a>
+    <a href="index.html#ingredients" class="mob__link">Ingredients</a>
+    <a href="about.html" class="mob__link">About</a>
+    <a href="product.html" class="mob__link mob__link--btn">Shop</a>
+  </div>
+
+  <!-- PRODUCT HERO -->
+  <section class="pdp">
+    <div class="wrap pdp__wrap">
+
+      <!-- LEFT: GALLERY -->
+      <div class="pdp__gallery" data-reveal>
+        <div class="pdp__main">
+          <img id="pdpMainImage" src="img/DSC09024.jpg" alt="Superfocus Coffee pouch">
+        </div>
+        <div class="pdp__thumbs" id="pdpThumbs">
+          <button type="button" class="pdp__thumb is-active" data-src="img/DSC09024.jpg" data-alt="Superfocus Coffee pouch — front">
+            <img src="img/DSC09024.jpg" alt="">
+          </button>
+          <button type="button" class="pdp__thumb" data-src="img/pouch-back.png" data-alt="Nutrition information and ingredients">
+            <img src="img/pouch-back.png" alt="">
+          </button>
+          <button type="button" class="pdp__thumb" data-src="img/DSC09199.jpg" data-alt="Coffee ritual lifestyle">
+            <img src="img/DSC09199.jpg" alt="">
+          </button>
+          <button type="button" class="pdp__thumb" data-src="img/about-brew.jpg" data-alt="Pouring Superfocus Coffee">
+            <img src="img/about-brew.jpg" alt="">
+          </button>
+          <button type="button" class="pdp__thumb" data-src="img/DSC09429.jpg" data-alt="Morning ritual">
+            <img src="img/DSC09429.jpg" alt="">
+          </button>
+          <button type="button" class="pdp__thumb" data-src="img/DSC08411.jpg" data-alt="Enjoying the cup">
+            <img src="img/DSC08411.jpg" alt="">
+          </button>
+          <button type="button" class="pdp__thumb" data-src="img/DSC09261.jpg" data-alt="Lifestyle moment">
+            <img src="img/DSC09261.jpg" alt="">
+          </button>
+        </div>
+      </div>
+
+      <!-- RIGHT: PURCHASE PANEL -->
+      <aside class="pdp__panel" data-reveal>
+        <div class="pdp__rating" id="pdpRating">
+          <div class="yotpo-widget-instance"
+               data-yotpo-instance-id="1120744"
+               data-yotpo-product-id=""></div>
+        </div>
+
+        <span class="tag">Functional Coffee Blend</span>
+        <h1 class="pdp__title">Superfocus<br><em>Coffee</em></h1>
+        <p class="pdp__desc">A considered blend of nootropics, adaptogens, and superfoods designed to support focus, balance, and steady energy. Lion's Mane for mental clarity, MCT for lasting fuel, prebiotics for gut health, L-Theanine for calm focus.</p>
+
+        <div class="pdp__plan" id="pdpPlan">
+          <button type="button" class="pdp__plan-card is-active" data-plan="onetime">
+            <span class="pdp__plan-label">One-time</span>
+            <span class="pdp__plan-price" id="pdpPriceOnetime">$32.95</span>
+            <span class="pdp__plan-meta">Single delivery</span>
+          </button>
+          <button type="button" class="pdp__plan-card" data-plan="subscribe">
+            <span class="pdp__plan-badge" id="pdpPlanBadge">Save 15%</span>
+            <span class="pdp__plan-label">Subscribe &amp; Save</span>
+            <span class="pdp__plan-price" id="pdpPriceSub">$28.01</span>
+            <span class="pdp__plan-meta" id="pdpPlanMeta">Delivered every month · cancel anytime</span>
+          </button>
+        </div>
+
+        <div class="pdp__qty">
+          <span class="pdp__qty-label">Quantity</span>
+          <div class="pdp__qty-control">
+            <button type="button" class="pdp__qty-btn" id="pdpQtyMinus" aria-label="Decrease">−</button>
+            <span class="pdp__qty-value" id="pdpQtyValue">1</span>
+            <button type="button" class="pdp__qty-btn" id="pdpQtyPlus" aria-label="Increase">+</button>
+          </div>
+        </div>
+
+        <button type="button" class="btn pdp__add" id="pdpAddToCart">
+          <span id="pdpAddText">Add to Ritual</span>
+          <span class="pdp__add-price" id="pdpAddPrice">$32.95</span>
+        </button>
+
+        <ul class="pdp__inclusions">
+          <li>30 serves per pouch · 150g</li>
+          <li>100% natural · third-party tested</li>
+          <li>Vegan, gluten-free, keto-friendly</li>
+          <li>Free shipping over $50 · 30-day guarantee</li>
+        </ul>
+
+        <div class="pdp__details">
+          <details class="pdp__det" open>
+            <summary>Benefits</summary>
+            <ul class="pdp__det-list">
+              <li><strong>Cognitive support</strong> — Lion's Mane backs sharper focus and memory.</li>
+              <li><strong>Sustained energy</strong> — MCT + L-Theanine for a smooth, jitter-free lift.</li>
+              <li><strong>Antioxidant boost</strong> — Turmeric brings everyday anti-inflammatory support.</li>
+              <li><strong>Gut health</strong> — Prebiotic fibre nourishes a balanced microbiome.</li>
+            </ul>
+          </details>
+
+          <details class="pdp__det">
+            <summary>Ingredients</summary>
+            <p class="pdp__det-text">Instant Coffee (51%), Prebiotic Fibre (Dextrin Fibre, Green Banana Starch, Acacia Fibre), Natural Flavours, Lucuma, Medium Chain Triglycerides (MCT), Functional Extracts (Lion's Mane, Turmeric, Black Pepper, Amino Acids — L-Carnitine, L-Theanine), Sweetener (Monk Fruit Extract), Cinnamon.</p>
+          </details>
+
+          <details class="pdp__det">
+            <summary>Nutrition</summary>
+            <div class="pdp__nutri">
+              <div class="pdp__nutri-head">
+                <span></span>
+                <span>Per 5g serve</span>
+                <span>Per 100g</span>
+              </div>
+              <div class="pdp__nutri-row"><span>Energy</span><span>5 kJ</span><span>95 kJ</span></div>
+              <div class="pdp__nutri-row"><span>Calories</span><span>16 Cal</span><span>320 Cal</span></div>
+              <div class="pdp__nutri-row"><span>Protein</span><span>0.6 g</span><span>11.6 g</span></div>
+              <div class="pdp__nutri-row"><span>Gluten</span><span>0 mg</span><span>0 mg</span></div>
+              <div class="pdp__nutri-row"><span>Fat, Total</span><span>0.1 g</span><span>1.7 g</span></div>
+              <div class="pdp__nutri-row"><span>– Saturated</span><span>0.1 g</span><span>1.6 g</span></div>
+              <div class="pdp__nutri-row"><span>Carbohydrates</span><span>2.6 g</span><span>52.7 g</span></div>
+              <div class="pdp__nutri-row"><span>– Sugars</span><span>0.2 g</span><span>3.5 g</span></div>
+              <div class="pdp__nutri-row"><span>Dietary Fibre</span><span>1.2 g</span><span>23.2 g</span></div>
+              <div class="pdp__nutri-row"><span>Sodium</span><span>1.2 mg</span><span>24 mg</span></div>
+              <div class="pdp__nutri-row"><span>Potassium</span><span>107 mg</span><span>2140 mg</span></div>
+              <div class="pdp__nutri-row"><span>Caffeine</span><span>89 mg</span><span>1780 mg</span></div>
+            </div>
+          </details>
+
+          <details class="pdp__det">
+            <summary>How to Brew</summary>
+            <ol class="pdp__det-steps">
+              <li><strong>Mix.</strong> Stir 5g (≈ 1 heaped tsp) into 250 mL of hot or cold water.</li>
+              <li><strong>Sip.</strong> Up to twice daily — morning, mid-afternoon, or pre-workout.</li>
+              <li><strong>Reseal.</strong> Store away from direct sunlight to keep it fresh.</li>
+            </ol>
+          </details>
+
+          <details class="pdp__det">
+            <summary>Subscription Perks</summary>
+            <ul class="pdp__det-list">
+              <li><strong>Save 15%</strong> on every recurring delivery.</li>
+              <li><strong>Skip, swap, or cancel</strong> any time — no lock-in.</li>
+              <li><strong>Priority support</strong> from the Healthy Rituals team.</li>
+            </ul>
+          </details>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- LIFESTYLE BAND -->
+  <section class="pdp-band">
+    <div class="pdp-band__img">
+      <img src="img/DSC08438.jpg" alt="Healthy Rituals — a ritual worth returning to">
+    </div>
+    <div class="pdp-band__overlay"></div>
+    <div class="pdp-band__content wrap" data-reveal>
+      <span class="tag tag--gold">The Promise</span>
+      <h2>Sharper mornings.<br><em>Calmer afternoons.</em></h2>
+      <p>We aren't trying to replace your coffee. We're making the cup you already love work harder for the life you actually live.</p>
+    </div>
+  </section>
+
+  <!-- REVIEWS — YOTPO -->
+  <section class="pdp-reviews" id="reviews">
+    <div class="wrap" data-reveal>
+      <div class="pdp-reviews__head">
+        <span class="tag">From Our Community</span>
+        <h2>Real reviews,<br><em>real rituals</em></h2>
+      </div>
+      <div id="yotpo-widget-mount">
+        <div class="yotpo-widget-instance"
+             data-yotpo-instance-id="1120743"
+             data-yotpo-product-id=""
+             data-yotpo-name="Superfocus Coffee"
+             data-yotpo-url="https://healthyritualscoffee.com/product.html"
+             data-yotpo-image-url="https://healthyritualscoffee.com/img/DSC09024.jpg"
+             data-yotpo-price=""
+             data-yotpo-currency="USD"
+             data-yotpo-description="A considered blend of nootropics, adaptogens, and superfoods designed for clarity, balance, and steady focus.">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta__bg"></div>
+    <div class="wrap">
+      <div class="cta__inner" data-reveal>
+        <p class="cta__tag">Start Your Ritual</p>
+        <h2>Find your<br><em>ritual</em></h2>
+        <p class="cta__sub">Sharpen the mind. Sustain the body.</p>
+        <a href="#top" class="btn btn--cream" id="pdpScrollTop">Add to Ritual</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="Logo-SVG/Healthy_Rituals_Logo_Suite (2)-1.svg" alt="Healthy Rituals" class="footer__logo">
+          <p>Built on the power of daily habits.</p>
+        </div>
+        <div class="footer__links">
+          <div class="footer__col">
+            <span>Navigate</span>
+            <a href="index.html#story">Story</a>
+            <a href="product.html">Product</a>
+            <a href="index.html#ingredients">Ingredients</a>
+            <a href="about.html">About</a>
+          </div>
+          <div class="footer__col">
+            <span>Shop</span>
+            <a href="product.html" class="footer__btn">Superfocus Coffee</a>
+            <a href="product.html" class="footer__btn">Add to Ritual</a>
+          </div>
+          <div class="footer__col">
+            <span>Connect</span>
+            <a href="https://instagram.com/healthyrituals.coffee" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://healthyritualscoffee.com.au" target="_blank" rel="noopener">Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2025 Healthy Rituals Coffee. All rights reserved.</p>
+        <span class="footer__bottom-tag">A ritual worth returning to.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CART DRAWER -->
+  <div class="cart" id="cart" aria-hidden="true">
+    <div class="cart__overlay" data-cart-close></div>
+    <aside class="cart__panel" role="dialog" aria-label="Your ritual">
+      <header class="cart__header">
+        <h3>Your Ritual</h3>
+        <button type="button" class="cart__close" data-cart-close aria-label="Close">
+          <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round">
+            <path d="M6 6l12 12M18 6L6 18"/>
+          </svg>
+        </button>
+      </header>
+      <div class="cart__body" id="cartBody">
+        <div class="cart__loading">Loading…</div>
+      </div>
+      <footer class="cart__footer" id="cartFooter" hidden>
+        <div class="cart__subtotal">
+          <span>Subtotal</span>
+          <strong id="cartSubtotal">$0.00</strong>
+        </div>
+        <p class="cart__note">Shipping &amp; taxes calculated at checkout.</p>
+        <button type="button" class="btn cart__checkout" id="cartCheckout">Checkout</button>
+      </footer>
+    </aside>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="shopify.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
