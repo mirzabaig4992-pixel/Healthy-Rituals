@@ -1453,6 +1453,7 @@ h2 em {
 .pdp__gallery {
   position:sticky;top:100px;
   display:flex;flex-direction:column;gap:18px;
+  min-width:0;
 }
 .pdp__main {
   width:100%;aspect-ratio:4/5;
@@ -1482,6 +1483,7 @@ h2 em {
 .pdp__panel {
   display:flex;flex-direction:column;gap:18px;
   padding:8px 0;
+  min-width:0;
 }
 .pdp__rating {
   display:flex;align-items:center;gap:10px;
@@ -1504,6 +1506,7 @@ h2 em {
 .pdp__desc {
   font-size:0.96rem;line-height:1.7;color:var(--grey);
   max-width:540px;
+  overflow-wrap:break-word;
 }
 
 /* Plan picker */
@@ -1736,7 +1739,7 @@ h2 em {
 /* Responsive */
 @media(max-width:1024px){
   .pdp { padding:120px 0 80px; }
-  .pdp__wrap { grid-template-columns:1fr;gap:48px; }
+  .pdp__wrap { grid-template-columns:minmax(0,1fr);gap:48px; }
   .pdp__gallery { position:static; }
   .pdp__thumbs { grid-template-columns:repeat(7,1fr); }
   .pdp-reviews { padding:100px 0 80px; }
