@@ -386,10 +386,16 @@ document.addEventListener('DOMContentLoaded', () => {
       ready = true;
     }
 
+    let cartReturnFocus = null;
     function openCart() {
+      cartReturnFocus = document.activeElement;
       cartEl.classList.add('is-open');
       cartEl.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      requestAnimationFrame(() => {
+        const closeBtn = cartEl.querySelector('.cart__close');
+        if (closeBtn) closeBtn.focus();
+      });
       ensureReady()
         .then(render)
         .catch(err => {
@@ -402,6 +408,10 @@ document.addEventListener('DOMContentLoaded', () => {
       cartEl.classList.remove('is-open');
       cartEl.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+      if (cartReturnFocus && typeof cartReturnFocus.focus === 'function') {
+        cartReturnFocus.focus();
+      }
+      cartReturnFocus = null;
     }
 
     document.querySelectorAll('[data-cart-open]').forEach(b =>
